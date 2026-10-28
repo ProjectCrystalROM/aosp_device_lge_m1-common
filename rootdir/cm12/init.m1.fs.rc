@@ -46,6 +46,8 @@ on post-fs-data
     restorecon_recursive /data/media
     mkdir /data/time 0700 system system
     restorecon_recursive /data/time
+    # vold waits for the device post-fs-data work before encrypted restart.
+    setprop vold.post_fs_data_done 1
 
 # Lollipop uses the sdcard FUSE daemon; its storage contract differs from M.
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
