@@ -16,6 +16,30 @@ PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libcnefeatureconfig \
     libcurl \
+    libemoji \
+    libhdmi \
+    libiprouteutil \
+    libmemalloc \
+    libminui \
+    libmm-omxcore \
+    libnetlink \
+    liboverlay \
+    libqdMetaData \
+    libqdutils \
+    libqsap_sdk \
+    libqservice \
+    libstagefrighthw \
+    libtinycompress \
+    libtinyxml \
+    libtinyxml2
+
+# Source owns these CM12 platform libraries instead of duplicate copy rules.
+PRODUCT_PACKAGES += libaudioparameter libbson libdivxdrmdecrypt libstlport
+
+# These providers served CM's netd extensions. AOSP netd does not use them,
+# and no selected vendor DT_NEEDED entry references them.
+ifneq ($(TARGET_PRODUCT),aosp_m1)
+PRODUCT_PACKAGES += \
     libebt_802_3 \
     libebt_among \
     libebt_arp \
@@ -38,24 +62,6 @@ PRODUCT_PACKAGES += \
     libebtable_filter \
     libebtable_nat \
     libebtc \
-    libemoji \
-    libhdmi \
-    libiprouteutil \
-    libmemalloc \
-    libminui \
-    libmm-omxcore \
     libnetfilter_conntrack \
-    libnetlink \
-    libnfnetlink \
-    liboverlay \
-    libqdMetaData \
-    libqdutils \
-    libqsap_sdk \
-    libqservice \
-    libstagefrighthw \
-    libtinycompress \
-    libtinyxml \
-    libtinyxml2
-
-# Source owns these CM12 platform libraries instead of duplicate copy rules.
-PRODUCT_PACKAGES += libaudioparameter libbson libdivxdrmdecrypt libstlport
+    libnfnetlink
+endif
