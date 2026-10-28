@@ -10,3 +10,6 @@ import /init.m1.wireless.rc
 
 # Missing optional import is accepted by CM12.1 init; only the radio product installs it.
 import /init.m1.radio.rc
+
+# Optional userdebug diagnostics; absent on user builds.
+import /init.m1.diagnostic.rc

@@ -34,8 +34,13 @@ endif
 
 # CM12 provides init, zygote, vold, sdcard, adbd and their generic init scripts.
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.zygote=zygote32 \
-    persist.sys.usb.config=mtp
+    ro.zygote=zygote32
+ifneq ($(filter eng userdebug,$(TARGET_BUILD_VARIANT)),)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += persist.sys.usb.config=adb ro.adb.secure=0
+PRODUCT_COPY_FILES += device/lge/m1/init.m1.diagnostic.rc:root/init.m1.diagnostic.rc
+else
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += persist.sys.usb.config=mtp ro.adb.secure=1
+endif
 
 # Display dimensions affect resources/boot animation, not a HAL selection.
 TARGET_SCREEN_HEIGHT := 854
