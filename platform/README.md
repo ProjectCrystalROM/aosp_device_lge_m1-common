@@ -1,24 +1,12 @@
-# Platform changes required by this device integration
+# Historical platform patch exports
 
-The component repositories do not replace a full CM13 checkout. Apply these
-reviewed platform changes as well; skip a patch if its commit is already present.
+This directory retains earlier CM bringup patches and provenance. They are not
+instructions for building the current Project Crystal AOSP5.1.1 product.
 
-## microG permission support
+Use the dedicated AOSP manifest: the required microG, libc, Binder, GPS, Bluetooth,
+CAF interface and recovery-preservation changes are committed in its platform
+forks already. Do not apply the CM13 or cm12.1 exports to those repositories.
 
-`frameworks-base-microg.patch` exports the exact tested framework commit
-57d34403e3f8de13b5c9165de222e23eb92312ab from branch
-microg/cm13-permission-support. Base:
-4b4e8b379c8f57895fda5ee14528b72910dfb414 in CyanogenMod/android_frameworks_base.
-Apply with `git am /path/to/frameworks-base-microg.patch` inside frameworks/base.
-It adds permission-controlled signature reporting; it is not a blanket grant.
-Owner microG self-check/login results qualify the matching framework and APKs.
-The upstream-only local remote is not an owner publication branch; this exact
-format-patch is the reproducible published form of the local commit.
-
-## Stable Bluetooth address
-
-Apply `../bluetooth/system-bt-address-handoff.patch` inside system/bt. Its
-base and exact tested commit are documented in ../bluetooth/README.md.
-Both local platform worktrees already contain the changes and are clean.
-Do not apply either patch twice. Raw device logs, crash dumps and credentials
-are not needed to apply these source patches and are not published.
+CM-specific source bases, validation reports and patch hashes remain historical
+references. They do not establish AOSP runtime acceptance or security coverage.
+The current build/release instructions live in device/lge/m1/AOSP_RELEASE.md.

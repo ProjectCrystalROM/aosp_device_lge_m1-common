@@ -1,3 +1,6 @@
+> Historical charger-asset provenance. This is not the current AOSP charger
+> build recipe or an off-mode-charging validation claim.
+
 # Charger resource ownership
 
 `battery_scale.png` is an unchanged copy from CM13 system/core/healthd/images

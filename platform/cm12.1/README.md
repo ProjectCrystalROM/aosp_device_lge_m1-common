@@ -1,3 +1,7 @@
+> Historical CM12.1 patch export, not the current AOSP build recipe. Use the
+> dedicated AOSP manifest; do not reapply these patches to its platform forks.
+> Old WebView, kernel-path and validation statements below describe that CM snapshot.
+
 # CM12.1 platform changes
 
 Hardware-qualified LG K7 MS330 Android 5.1.1/API22 integration. CM13 patches in
