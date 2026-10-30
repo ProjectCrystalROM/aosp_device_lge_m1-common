@@ -13,12 +13,18 @@ PRODUCT_PACKAGES += libcamera_client libxml2
 PRODUCT_COPY_FILES += vendor/lge/m1/proprietary/lib/hw/camera.msm8909.so:system/lib/hw/camera.msm8909.so
 
 PRODUCT_COPY_FILES += \
-    device/lge/m1-common/rootdir/cm12/init.m1.rc:root/init.m1.rc \
     device/lge/m1-common/rootdir/cm12/init.m1.platform.rc:root/init.m1.platform.rc \
     device/lge/m1-common/rootdir/cm12/init.m1.usb.rc:root/init.m1.usb.rc \
     device/lge/m1-common/rootdir/cm12/fstab.m1:root/fstab.m1 \
     device/lge/m1-common/rootdir/cm12/ueventd.m1.rc:root/ueventd.m1.rc \
     device/lge/m1/dt.img:dt.img
+
+
+ifeq ($(TARGET_PRODUCT),aosp_m1)
+PRODUCT_PACKAGES += init.m1.rc
+else
+PRODUCT_COPY_FILES += device/lge/m1-common/rootdir/cm12/init.m1.rc:root/init.m1.rc
+endif
 
 # security=none cannot accept the SELinux context= FAT mount option. Select an
 # otherwise identical firmware mount rule only for the no-SELinux diagnostic.
@@ -35,7 +41,7 @@ endif
 # CM12 provides init, zygote, vold, sdcard, adbd and their generic init scripts.
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.zygote=zygote32
-ifneq ($(filter eng userdebug,$(TARGET_BUILD_VARIANT)),)
+ifneq ($(filter eng userdebug,$(TARGET_BUILD_VARIANT))$(filter true,$(M1_DIAGNOSTIC_USB)),)
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += persist.sys.usb.config=adb ro.adb.secure=0
 PRODUCT_COPY_FILES += device/lge/m1/init.m1.diagnostic.rc:root/init.m1.diagnostic.rc
 else
